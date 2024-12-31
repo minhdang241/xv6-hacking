@@ -1,0 +1,4 @@
+1. Which function called syscall?
+usertrap() function called syscall
+2. What is the value of p->trapframe->a7 and what does that value represent? 
+The value of p->trapframe->a7 is 15. It represents the SYS_exec.
