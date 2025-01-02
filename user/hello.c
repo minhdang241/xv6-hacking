@@ -5,7 +5,7 @@
 int
 main(int argc, char *argv[])
 {
-  fprintf(1, "hello world, Minh is here\n");
-
+  fprintf(1, "Calling our system call\n");
+  hello();
   exit(0);
 }

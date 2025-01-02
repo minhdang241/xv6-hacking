@@ -91,3 +91,10 @@ sys_uptime(void)
   release(&tickslock);
   return xticks;
 }
+
+uint64
+sys_hello(void) {
+   int pid = myproc()->pid;
+   printf("current process pid: %d\n", pid);
+   return 0;
+}

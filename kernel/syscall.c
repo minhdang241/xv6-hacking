@@ -22,8 +22,7 @@ fetchaddr(uint64 addr, uint64 *ip)
 // Fetch the nul-terminated string at addr from the current process.
 // Returns length of string, not including nul, or -1 for error.
 int
-fetchstr(uint64 addr, char *buf, int max)
-{
+fetchstr(uint64 addr, char *buf, int max) {
   struct proc *p = myproc();
   if(copyinstr(p->pagetable, buf, addr, max) < 0)
     return -1;
@@ -101,6 +100,7 @@ extern uint64 sys_unlink(void);
 extern uint64 sys_link(void);
 extern uint64 sys_mkdir(void);
 extern uint64 sys_close(void);
+extern uint64 sys_hello(void);
 
 // An array mapping syscall numbers from syscall.h
 // to the function that handles the system call.
@@ -126,6 +126,7 @@ static uint64 (*syscalls[])(void) = {
 [SYS_link]    sys_link,
 [SYS_mkdir]   sys_mkdir,
 [SYS_close]   sys_close,
+[SYS_hello]   sys_hello,
 };
 
 void
