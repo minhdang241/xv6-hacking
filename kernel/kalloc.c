@@ -71,12 +71,22 @@ kalloc(void)
   struct run *r;
 
   acquire(&kmem.lock);
-  r = kmem.freelist;
-  if(r)
-    kmem.freelist = r->next;
+  r = kmem.freelist; if(r) kmem.freelist = r->next;
   release(&kmem.lock);
 
   if(r)
     memset((char*)r, 5, PGSIZE); // fill with junk
   return (void*)r;
+}
+
+uint64
+kmemfree(void)
+{
+  struct run *r = kmem.freelist;
+  uint64 free = 0;
+  while (r != NULL) {
+    free += PGSIZE;
+    r = r->next;
+  }
+  return free;
 }

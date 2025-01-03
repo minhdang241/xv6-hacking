@@ -98,3 +98,8 @@ sys_hello(void) {
    printf("current process pid: %d\n", pid);
    return 0;
 }
+
+uint64
+sys_kmemfree(void) {
+  return kmemfree();
+}
